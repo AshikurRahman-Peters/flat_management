@@ -1,0 +1,25 @@
+        $payments = $this->db->query("
+            select
+                cp.*,
+                c.Customer_Code,
+                c.Customer_Name,
+                c.Customer_Mobile,
+                ba.account_name,
+                ba.account_number,
+                ba.bank_name,
+                case cp.CPayment_TransactionType
+                    when 'CR' then 'Received'
+                    when 'CP' then 'Paid'
+                end as transaction_type,
+                case cp.CPayment_Paymentby
+                    when 'bank' then concat('Bank - ', ba.account_name, ' - ', ba.account_number, ' - ', ba.bank_name)
+                    when 'By Cheque' then 'Cheque'
+                    else 'Cash'
+                end as payment_by
+            from tbl_customer_payment cp
+            join tbl_customer c on c.Customer_SlNo = cp.CPayment_customerID
+            left join tbl_bank_accounts ba on ba.account_id = cp.account_id
+            where cp.CPayment_status = 'a'
+            and cp.CPayment_brunchid = ? $clauses
+            order by cp.CPayment_id desc
+        ", $this->session->userdata('BRANCHid'))->result();
