@@ -31,10 +31,10 @@ $route['unit_entry'] = 'Unit/unit_entry';
 $route['unit_insert'] = 'Unit/unit_insert';
 $route['select_unit'] = 'Unit/select_unit';
 $route['get_floor'] = 'Unit/get_floor';
-$route['get_units'] = 'Unit/get_units';
+$route['get_unit_info'] = 'Unit/get_unit_info';
 $route['get_unit'] = 'Unit/get_unit';
 $route['delete_unit'] = 'Unit/delete_unit';
-$route['edit_unit_detail'] = 'Unit/edit_unit_detail';
+$route['update_unit_detail'] = 'Unit/update_unit_detail';
 $route['insert_service_bill'] = 'Unit/insert_service_bill';
 
 

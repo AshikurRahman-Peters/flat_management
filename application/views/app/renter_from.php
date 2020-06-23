@@ -161,7 +161,7 @@
 			<div class="col-md-7">
 				<div class="row">
 					<div class="col-12">
-						<img class="card-img-top" width="200px" src="https://scontent.fdac7-1.fna.fbcdn.net/v/t1.0-9/19642650_1050219898442918_2216242493945183421_n.png?_nc_cat=104&_nc_oc=AQkWPLB54fsbARMtTs_Q_EX0ZyCcb7ydGzKN4iElx_TtZfLJx9_heJGd2_SIWUmH9vg&_nc_ht=scontent.fdac7-1.fna&oh=423512904eed0a104b328042c5fa225c&oe=5ECEB3A1" alt="Card image cap">
+						<img class="card-img-top" width="200px" src="<?php echo base_url();?>assets/Screenshot_5.png" alt="Card image cap">
 						<h3 class="heading_top">ঢাকা মেট্রোপলিটন পুলিশ</h3>
 						<h5 class="heading_top_two">উত্তরা বিভাগ , দক্ষিণখান থানা</h5>
 					</div>
@@ -492,6 +492,7 @@
 				units: [],
 				selectedUnit: null,
 				renter: {},
+				renter: [],
 				member: {
 					id: null,
 					name: null,
@@ -556,7 +557,7 @@
 		created() {
 			this.get_floor();
 			this.getUnits();
-			// this.insertMember();
+			//this.insertMember();
 		},
 		methods: {
 			get_floor() {
@@ -674,18 +675,23 @@
 					member: this.members,
 					renter: this.renters
 				}
+
+				// console.log(data);
+				// return false;
+
 				let fd = new FormData();
 				fd.append('profile', this.selectedProfileFile);
 				fd.append('signature', this.selectedSignatureFile);
 				fd.append('data', JSON.stringify(data));
 				axios.post("/ranter_insert", fd).then(res => {
 					this.member = res.data;
+					alert("Resident Entry Successfully")
 				})
 
 				this.clearFrom();
 				this.clearMember();
-				location.reload();
-				alert("Resident Entry Successfully")
+				//location.reload();
+				
 			},
 			profilePreview() {
 				if (event.target.files.length == 0) {

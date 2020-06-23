@@ -34,6 +34,10 @@
 
         <div class="form-group row p-2">
             <div class="col-sm-6 col-md-6">
+            <select  class="filter-make col-sm-3 col-md-4 filter form-control" required v-model="unit_detail.unit_type">
+				<option :value="1" >Brartia  </option>
+				<option :value="2" > malik</option>
+			</select>
                 <input type="input" v-model="unit_detail.unit_name" placeholder="ইউনিট নাম" required></input>
                 <input type="input" v-model="unit_detail.ownar_name" placeholder="মালিকের নাম" required></input>
                 <input type="input" v-model="unit_detail.fathers_name" placeholder="বাবার নাম" ></input>
@@ -84,6 +88,7 @@
                                 <td>{{unit.fld_address}}</td>
                                 <td>{{unit.fld_email}}</td>
                                 <td>{{unit.phone_number}}</td>
+                                <td>{{unit.rent_amount}}</td>
                                 <td class="text-right">
                                     <!-- <a href="#" class="btn btn-info btn-link btn-icon btn-sm like"><i class="fa fa-heart"></i></a> -->
                                     <a @click="edit_unit_detail(unit)" class="btn btn-warning btn-link btn-icon btn-sm edit"><i class="fa fa-edit"></i></a>
@@ -125,7 +130,8 @@
                     fathers_name: null,
                     fld_address: null,
                     fld_email: null,
-                    phone_number: null
+                    phone_number: null,
+                    unit_type:null
 
                 },
                 unit_details: [],
@@ -133,7 +139,8 @@
                     rent_amount: null,
                     fld_garage: null,
                     fld_others: null,
-                    id:null
+                    id:null,
+                    unit_type:null
                 },
                 rent_bills: []
 
@@ -154,12 +161,14 @@
                 if (this.selectedFloor == null) {
                     return;
                 }
-                axios.post("/get_units", {
+                axios.post("/get_unit_info", {
                     floorId: this.selectedFloor
                 }).then(res => {
+
+                    console.log(res);
                     this.units = res.data;
                 })
-                 event.target.reset();
+                //  event.target.reset();
 
             },
             get_months() {
@@ -179,9 +188,11 @@
                 }
                 // let allData = new FormData();
                 // allData.append('data', JSON.stringify(data));
+
                     url = '/unit_insert';
-                if( this.unit_detail == ''){
-					url = '/edit_unit_detail';
+
+                if( this.data == ''){
+					url = '/update_unit_detail';
 				}
                 axios.post(url, data ).then(res => {
                     this.member = res.data;

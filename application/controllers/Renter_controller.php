@@ -48,9 +48,9 @@ class Renter_controller extends CI_Controller
     public function member_insert()
     {
         $data = json_decode($this->input->raw_input_stream);
-        echo "<pre>";
-        print_r($data);
-        exit;
+        // echo "<pre>";
+        // print_r($data);
+        // exit;
         if ($this->input->post('')) {
             $this->session->set_flashdata('msg', 'Member  Added');
             redirect('all_renter_list');
@@ -79,9 +79,11 @@ class Renter_controller extends CI_Controller
     {
         $data = json_decode($this->input->post('data'));
 
-
+        
         $member = $data->member;
         $renter = $data->renter;
+
+      
 
         $id = $this->db->query("SELECT unit_id FROM tbl_resident WHERE status= 'a'")->row();
     
@@ -89,9 +91,9 @@ class Renter_controller extends CI_Controller
 
             echo json_decode("Data Already added") ;
             return;
-            ?>
+            
   
-       <?php } else {
+       } else {
             $data1 = array(
                 'fld_image' => $this->image_upload($_FILES['profile']),
                 'signature_one' => $this->image_upload($_FILES['signature']),
@@ -139,6 +141,8 @@ class Renter_controller extends CI_Controller
                 'created_by' => $_SESSION['id'],
                 'branch_id' => $_SESSION['branch_id']
             );
+               
+
             $result = $this->renter_m->addUnitBill($data1);
             $renter_id = $this->db->insert_id();
             $data2 = array(

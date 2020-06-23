@@ -26,10 +26,10 @@ class Unit extends CI_Controller
         $floors = $this->db->query("SELECT * FROM `tbl_floor` WHERE active = 'a' and branch_id = $this->branch_id")->result();
         echo json_encode($floors);
     }
-    public function get_units()
+    public function get_unit_info()
     {
         $data = json_decode($this->input->raw_input_stream);
-        $units = $this->db->query("SELECT * FROM tbl_unit WHERE status = 'a' and floor_id= $data->floorId and branch_id=$this->branch_id")->result();
+        $units = $this->db->query("SELECT * FROM tbl_unit WHERE status = 'a' and floor_id = $data->floorId and branch_id = $this->branch_id")->result();
         echo json_encode($units);
     }
     public function get_unit()
@@ -46,8 +46,8 @@ class Unit extends CI_Controller
     {
         $data = json_decode($this->input->raw_input_stream);
 
-     
-        $unit_details = $data->unit_details;
+       
+        $unit_detail = $data->unit_details;
         $rent_bills = $data->rent_bills;
 
         if ($this->input->post('')) {
@@ -55,14 +55,15 @@ class Unit extends CI_Controller
             redirect('unit_entry');
         } else {
             $data1 = array(
-                'unit_name' => $unit_details->unit_name,
-                'floor_id' => $unit_details->floor_id,
-                'ownar_name' => $unit_details->ownar_name,
-                'fathers_name' => $unit_details->fathers_name,
-                'fld_address' => $unit_details->fld_address,
-                'fld_email' => $unit_details->fld_email,
-                'phone_number' => $unit_details->phone_number,
+                'unit_name' => $unit_detail->unit_name,
+                'floor_id' => $unit_detail->floor_id,
+                'ownar_name' => $unit_detail->ownar_name,
+                'fathers_name' => $unit_detail->fathers_name,
+                'fld_address' => $unit_detail->fld_address,
+                'fld_email' => $unit_detail->fld_email,
+                'phone_number' => $unit_detail->phone_number,
                 'status' => 'a',
+                'unit_type' => $unit_detail->unit_type,
                 'entry_date' => date('Y-m-d'),
                 'added_by' => $_SESSION['id'],
                 'branch_id' => $_SESSION['branch_id']
@@ -73,11 +74,12 @@ class Unit extends CI_Controller
                 'rent_amount' => $rent_bills->rent_amount,
                 'fld_garage' => $rent_bills->fld_garage,
                 'fld_others' => $rent_bills->fld_others,
-                'service_month_id' => $rent_bills->id,
-                'fld_status' => 'p',
+                // 'rent_month_id' => $rent_bills->id,
+                'unit_status' => 'p',
+                //'renter_type' =>$rent_bills->unit_type,
                 'fld_total' => $rent_bills->rent_amount + $rent_bills->fld_garage + $rent_bills->fld_others,
-                'generate_date' => date('Y-m-d'),
-                'fld_generate_by' => $_SESSION['id'],
+                'entry_dates' => date('Y-m-d'),
+                'added_by' => $_SESSION['id'],
                 'unit_id' => $unit_id,
                 'branch_id' => $_SESSION['branch_id']
             );
@@ -103,18 +105,22 @@ class Unit extends CI_Controller
         );
         echo json_encode($update);
     }
-    public function edit_unit_detail()
+    public function update_unit_detail()
     {
         $id = $_SESSION['id'];
         $date = date('Y-m-d');
         $data = json_decode($this->input->raw_input_stream);
-        $unit = $data->unit_details;
+        $units = $data->unit_details;
         $rent_bills = $data->rent_bills;
+        print_r($units);
+        exit;
         $update = $this->db->query("
         UPDATE tbl_unit
         update_date = $date,
+        SET ownar_name = Rayhana
         update_by = $id,
-        WHERE tbl_unit.id = $unit->id"
+
+        WHERE tbl_unit.id = $units->id"
         )->row();
         echo json_encode($update);
     }

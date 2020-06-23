@@ -1,4 +1,5 @@
 <div class="content" id="floor_unit">
+
     <?php echo validation_errors();
     ?>
     <?php echo form_open('unit_bill_insert');

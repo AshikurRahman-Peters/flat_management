@@ -16,7 +16,7 @@ class Unit_model extends CI_Model
     }
     public function addUnitBill($data2)
     {
-        $query = $this->db->insert('tbl_rent_transaction', $data2);
+        $query = $this->db->insert('tbl_unit_rantbill', $data2);
         return $query;
     }
     public function addServiceBill($units)

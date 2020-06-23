@@ -65,8 +65,9 @@ class Service_unit_bill_controller extends CI_Controller
         $moth = $this->db->query("
         SELECT * FROM tbl_service_transaction WHERE service_month_id = ?", $service_month_id);
         if ($moth->num_rows() > 0) {
-
-            echo ("Already Added");
+            $this->session->set_flashdata('msg', 'Unit Already Added');
+            redirect('unit_bill_entry');
+            // echo ("Already Added");
         } else {
             // $id = $this->db->query(" SELECT sr.*,
             // u.unit_name,

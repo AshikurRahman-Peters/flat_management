@@ -33,7 +33,7 @@
 		<thead>
 			<tr>
 				<th>Bill Id</th>
-				<!-- <th>Name</th> -->
+				<th>Name</th>
 				<th>Date</th>
 				<th>unit</th>
 				<th>Rent</th>
@@ -46,7 +46,7 @@
 		<tbody>
 			<tr v-for="all_rents in all_rent">
 				<td>{{all_rents.id }}</td>
-				<!-- <td>{{all_rents.resident_name }}</td> -->
+				<td>{{all_rents.resident_name }}</td>
 				<td>{{all_rents.generate_date }}</td>
 				<td>{{all_rents.unit_name }}</td>
 				<td><input type="text" v-model="all_rents.rent_amount" class="form-control"></input></td>
@@ -60,7 +60,7 @@
 		<thead>
 			<tr>
 				<th>Bill Id</th>
-				<!-- <th>Name</th> -->
+				<th>Name</th>
 				<th>Date</th>
 				<th>Unit</th>
 				<th>owner C.Fund</th>
@@ -78,7 +78,7 @@
 		<tbody>
 			<tr v-for="all_bills in all_bill">
 				<td>{{all_bills.id }}</td>
-				<!-- <td>{{ all_bills.resident_name }}</td> -->
+				<td>{{ all_bills.resident_name }}</td>
 				<td>{{ all_bills.generate_date }} </td>
 				<td>{{ all_bills.unit_name }} </td>
 				<td><input type="text" v-model="all_bills.owner_fund"  class="form-control"></input></td>

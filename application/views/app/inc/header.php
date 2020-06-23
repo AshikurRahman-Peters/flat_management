@@ -41,22 +41,7 @@
   <link href="  https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css
 " rel="stylesheet" />
   <!-- Google Tag Manager -->
-  <script>
-    (function(w, d, s, l, i) {
-      w[l] = w[l] || [];
-      w[l].push({
-        'gtm.start': new Date().getTime(),
-        event: 'gtm.js'
-      });
-      var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s),
-        dl = l != 'dataLayer' ? '&l=' + l : '';
-      j.async = true;
-      j.src =
-        '#/#/#/www.googletagmanager.com/gtm5445.html?id=' + i + dl;
-      f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-NKDMSK6');
-  </script>
+
   <!-- End Google Tag Manager -->
 </head>
 
@@ -71,7 +56,7 @@
     <div class="sidebar" data-color="brown" data-active-color="danger">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
-    -->
+      -->
       <div class="logo">
         <a href="#" class="simple-text logo-mini">
           <div class="logo-image-small">
@@ -196,7 +181,7 @@
                 <i class="nc-icon nc-box"></i>
                 <p>Bill Collection </p>
               </a>
-            <?php //  endif; ?>
+            <?php //endif; ?>
           </li> -->
           <li>
           <!-- <li>

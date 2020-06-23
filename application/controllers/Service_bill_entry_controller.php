@@ -94,32 +94,57 @@ class Service_bill_entry_controller extends CI_Controller
 
      
         if(empty($all_bill)){
+            // $all_bil = $this->db->query("
+            // SELECT sr.*,
+            // u.unit_name,
+            // u.status,
+            // rs.resident_name,
+            // rs.generate_date
+            // FROM tbl_service_transaction as sr
+            // INNER JOIN tbl_unit as u on sr.unit_id = u.id
+            // INNER JOIN tbl_resident as rs on u.id = rs.unit_id
+            // WHERE u.status = 'a'
+            // and rs.status = 'a'
+            // and rs.branch_id = $this->branch_id
+            // AND sr.service_month_id In (SELECT MAX(service_month_id) FROM tbl_service_transaction)
+            // ")->result();
+            // echo json_encode($all_bil);
             $all_bil = $this->db->query("
             SELECT sr.*,
-            u.unit_name,
-            u.status,
-            rs.resident_name,
-            rs.generate_date
-            FROM tbl_service_transaction as sr
-            INNER JOIN tbl_unit as u on sr.unit_id = u.id
-            INNER JOIN tbl_resident as rs on u.id = rs.unit_id
-            WHERE u.status = 'a'
-            and rs.status = 'a'
-            and rs.branch_id = $this->branch_id
-            AND sr.service_month_id In (SELECT MAX(service_month_id) FROM tbl_service_transaction)
+            MAX(sr.service_month_id),
+                    u.unit_name,
+                    u.status,
+                    rs.resident_name,
+                    rs.generate_date
+                    FROM tbl_service_transaction as sr
+                    INNER JOIN tbl_unit as u on sr.unit_id = u.id
+                    INNER JOIN tbl_resident as rs on u.id = rs.unit_id
+                    WHERE u.status = 'a'
+                    and rs.status = 'a'
+                    and rs.branch_id = $this->branch_id
             ")->result();
             echo json_encode($all_bil);
         }else{
+            // $all_bills = $this->db->query("
+            // SELECT sr.*,
+            // u.unit_name,
+            // u.status
+            // FROM tbl_service_transaction as sr
+            // INNER JOIN tbl_unit as u on sr.unit_id = u.id
+            // WHERE u.status = 'a' 
+            // and sr.branch_id = $this->branch_id
+            // AND sr.service_month_id In (SELECT MAX(service_month_id) FROM tbl_service_transaction)
+            // ")->result();
+            // echo json_encode($all_bills);
             $all_bills = $this->db->query("
             SELECT sr.*,
+            MAX(sr.service_month_id),
             u.unit_name,
             u.status
             FROM tbl_service_transaction as sr
             INNER JOIN tbl_unit as u on sr.unit_id = u.id
             WHERE u.status = 'a' 
-            and sr.branch_id = $this->branch_id
-            AND sr.service_month_id In (SELECT MAX(service_month_id) FROM tbl_service_transaction)
-            ")->result();
+            and sr.branch_id =  $this->branch_id ")->result();
             echo json_encode($all_bills);
            
         }

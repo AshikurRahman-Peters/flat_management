@@ -6,7 +6,7 @@
     </span>
   </div>
   <div class="row">
-    <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="col-lg-4 col-md-6 col-sm-6">
       <div class="card card-stats">
         <div class="card-body ">
           <div class="row">
@@ -33,9 +33,9 @@
         </div>
         <div class="card-footer ">
           <hr>
-          <div class="stats">
+          <!-- <div class="stats">
             <i class="fa fa-calendar-o"></i> This Month
-          </div>
+          </div> -->
         </div>
 
       </div>
@@ -55,7 +55,7 @@
     ?>
 
     <?php if (array_search("service", $access) > -1 || isset($CheckSuperAdmin)) : ?>
-      <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="col-lg-4 col-md-6 col-sm-6">
         <div class="card card-stats">
 
           <div class="card-body ">
@@ -76,9 +76,9 @@
                   } else {
                   ?>
 
-                    <p class="card-category">Total Service Bill </p>
+                    <p class="card-category">Service Bill </p>
                     <p class="card-title">Paid: <?php echo $total_service->total; ?><p>
-                        <p class="card-title">Dew: <?php echo $total_service_dew->total; ?><p>
+                        <p class="card-title">Due: <?php echo $total_service_dew->total; ?><p>
                           <?php } ?>
                 </div>
 
@@ -88,14 +88,14 @@
 
           <div class="card-footer ">
             <hr>
-            <div class="stats">
+            <!-- <div class="stats">
               <i class="fa fa-calendar-o"></i> This Month
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
     <?php endif; ?>
-    <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="col-lg-4 col-md-6 col-sm-6">
       <div class="card card-stats">
         <div class="card-body ">
           <div class="row">
@@ -114,9 +114,9 @@
                 } else {
                 ?>
 
-                  <p class="card-category">Total Rents Bill </p>
+                  <p class="card-category">Rents Bill </p>
                   <p class="card-title">Paid: <?php echo $total_rent->total; ?><p>
-                      <p class="card-title">Dew: <?php echo $total_rent_dew->total; ?><p>
+                      <p class="card-title">Due: <?php echo $total_rent_dew->total; ?><p>
                   <?php } ?>
               </div>
             </div>
@@ -124,38 +124,13 @@
         </div>
         <div class="card-footer ">
           <hr>
-          <div class="stats">
+          <!-- <div class="stats">
             <i class="fa fa-calendar-o"></i> This Month
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-6">
-      <div class="card card-stats">
-        <div class="card-body ">
-          <div class="row">
-            <div class="col-5 col-md-4">
-              <div class="icon-big text-center icon-warning">
-                <i class="nc-icon nc-vector text-danger"></i>
-              </div>
-            </div>
-            <div class="col-7 col-md-8">
-              <div class="numbers">
-                <p class="card-category">Errors</p>
-                <p class="card-title">23
-                  <p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card-footer ">
-          <hr>
-          <div class="stats">
-            <i class="fa fa-clock-o"></i> In the last hour
-          </div>
-        </div>
-      </div>
-    </div>
+  
   </div>
 
   <!-- <div class="row">
